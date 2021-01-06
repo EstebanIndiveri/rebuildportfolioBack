@@ -5,6 +5,9 @@ const bodyParser=require('body-parser');
 // dotenv
 require('dotenv').config({path:'variables.env'});
 
+// Cors 
+const cors=require('cors');
+
 mongoose.Promise=global.Promise;
 mongoose.connect(process.env.DATABASE,{useNewUrlParser:true,useUnifiedTopology: true,useFindAndModify:false,useCreateIndex:true}).then(console.log('Conectado'))
 mongoose.connection.on('error',(error)=>{
@@ -16,7 +19,11 @@ const app = express();
 // body parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}))
+// habilito cors
+app.use(cors());
 
+// carpeta publica
+app.use(express.static('uploads'));
 
 // rutas
 app.use("/",routes());
