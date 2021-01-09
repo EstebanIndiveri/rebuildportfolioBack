@@ -16,6 +16,7 @@ mongoose.connection.on('error',(error)=>{
 
 // crear el server
 const app = express();
+app.set('view engine','pug');
 // body parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}))

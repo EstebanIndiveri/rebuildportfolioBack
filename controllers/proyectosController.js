@@ -1,5 +1,5 @@
 const Proyectos=require('../models/Proyectos')
-
+const main = require('../handler/email');
 const multer=require('multer');
 const shortid=require('shortid');
 
@@ -102,5 +102,23 @@ exports.eliminarProyecto=async(req,res,next)=>{
         console.log(error);
         next();
         
+    }
+}
+exports.enviarEmail=async(req,res,next)=>{  
+    const{name,email,message}=req.body;
+    console.log(req.body);
+    try{
+        await main({
+            name,
+            email,
+            message,
+            subject:'Enviando email desde ReactWeb v.1',
+            archivo: 'enviar-email'
+        });
+        console.log('enviado correctamente');
+        res.status(200).send('Mail enviado correctamente');
+         
+    }catch(error){
+        console.log(error);
     }
 }

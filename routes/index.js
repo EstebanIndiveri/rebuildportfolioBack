@@ -18,9 +18,11 @@ module.exports=function(){
     proyectosController.subirArchivo,
     proyectosController.actualizarProyecto
     )
-
     // delete proyecto
     router.delete('/proyectos/:idProyecto',proyectosController.eliminarProyecto)
+
+    // Send Email
+    router.post('/sendemail',proyectosController.enviarEmail);
 
     return router;
 
