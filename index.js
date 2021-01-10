@@ -26,7 +26,13 @@ app.use(cors());
 // carpeta publica
 app.use(express.static('uploads'));
 
+
 // rutas
 app.use("/",routes());
 // port
-app.listen(5000);
+// app.listen(5000);
+const port = process.env.PORT || 5000;
+
+app.listen(port,()=>{
+    console.log('SERVER UP');
+});
